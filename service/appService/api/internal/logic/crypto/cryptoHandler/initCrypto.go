@@ -18,7 +18,7 @@ func InitCrypto(ctx *svc.ServiceContext) error {
 	}
 	current := curve.H
 	base := curve.H
-	for i := int64(1); i <= 5000000; i++ {
+	for i := int64(1); i <= 10000000; i++ {
 		isSuccess, err := ctx.CryptoModel.CreateCollision(&crypto.Crypto{
 			EncData:      curve.ToString(current),
 			EncCollision: i,
@@ -44,6 +44,9 @@ func InitCrypto(ctx *svc.ServiceContext) error {
 			errInfo := fmt.Sprintf("[cryptohandler.CreateCollision] %s", ErrInvalidCryptoInput)
 			logx.Error(errInfo)
 			return ErrInvalidCryptoInput
+		}
+		if i%10000 == 0 {
+			logx.Info("Insert 10000 records")
 		}
 		current = curve.Add(current, base)
 	}
