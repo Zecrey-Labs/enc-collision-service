@@ -1,0 +1,55 @@
+syntax = "v1"
+
+info(
+	author: "Tao Zhu"
+	date:   "2021-12-5"
+	desc:   "AppService API"
+)
+
+/* ========================= Crypto =========================*/
+// getEncCollision
+type (
+	ReqGetEncCollision {
+		EncData string `form:"enc_data"`
+	}
+
+	ResultGetEncCollision {
+		CollisionResult int64 `json:"collision_result"`
+	}
+
+	RespGetEncCollision {
+		Status int                   `json:"status"`
+		Msg    string                `json:"msg"`
+		Err    string                `json:"err"`
+		Result ResultGetEncCollision `json:"result"`
+	}
+)
+
+// getEncCollisionBatches
+type (
+	ReqGetEncCollisionBatches {
+		EncDataBatches []string `form:"enc_data_batches"`
+	}
+
+	ResultGetEncCollisionBatches {
+		EncData         string `json:"enc_data"`
+		CollisionResult int64  `json:"collision_result"`
+	}
+
+	RespGetEncCollisionBatches {
+		Status int                             `json:"status"`
+		Msg    string                          `json:"msg"`
+		Err    string                          `json:"err"`
+		Result []*ResultGetEncCollisionBatches `json:"result"`
+	}
+)
+@server(
+	group: crypto
+)
+service appService-api{
+	@handler GetEncCollision
+	post /api/v1/crypto/getEncCollision (ReqGetEncCollision) returns (RespGetEncCollision)
+	
+	@handler GetEncCollisionBatches
+	post /api/v1/crypto/GetEncCollisionBatches (ReqGetEncCollisionBatches) returns (RespGetEncCollisionBatches)
+}
