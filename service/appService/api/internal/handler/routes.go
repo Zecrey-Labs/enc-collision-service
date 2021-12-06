@@ -18,6 +18,11 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 				Path:    "/api/v1/crypto/getEncCollision",
 				Handler: crypto.GetEncCollisionHandler(serverCtx),
 			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/api/v1/crypto/GetEncCollisionBatches",
+				Handler: crypto.GetEncCollisionBatchesHandler(serverCtx),
+			},
 		},
 	)
 }

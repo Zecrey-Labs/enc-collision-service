@@ -25,10 +25,31 @@ type (
 	}
 )
 
+// getEncCollisionBatches
+type (
+	ReqGetEncCollisionBatches {
+		EncDataBatches []string `form:"enc_data_batches"`
+	}
+
+	ResultGetEncCollisionBatches {
+		EncData         string `json:"enc_data"`
+		CollisionResult int64  `json:"collision_result"`
+	}
+
+	RespGetEncCollisionBatches {
+		Status int                             `json:"status"`
+		Msg    string                          `json:"msg"`
+		Err    string                          `json:"err"`
+		Result []*ResultGetEncCollisionBatches `json:"result"`
+	}
+)
 @server(
 	group: crypto
 )
 service appService-api{
 	@handler GetEncCollision
 	post /api/v1/crypto/getEncCollision (ReqGetEncCollision) returns (RespGetEncCollision)
+	
+	@handler GetEncCollisionBatches
+	post /api/v1/crypto/GetEncCollisionBatches (ReqGetEncCollisionBatches) returns (RespGetEncCollisionBatches)
 }

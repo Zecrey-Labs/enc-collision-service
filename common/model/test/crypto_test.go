@@ -27,7 +27,7 @@ func TestCreateCollision(t *testing.T) {
 	ctx := TestServiceContext(ConfigProvider("test.yaml"))
 	current := curve.H
 	base := curve.H
-	for i := int64(1); i <= 5000000; i++ {
+	for i := int64(1); i <= 3; i++ {
 		isSuccess, err := ctx.Crypto.CreateCollision(&crypto.Crypto{
 			EncData:      curve.ToString(current),
 			EncCollision: i,
@@ -50,4 +50,12 @@ func TestGetEncCollisionByEncData(t *testing.T) {
 	collision, err := ctx.Crypto.GetEncCollisionByEncData("DIVSZPNo//N09abkmcZDPTVfi1KtuKFVFT4ElQyAJoM=")
 	assert.Nil(t, err)
 	assert.NotNil(t, collision)
+}
+
+func TestGetEncCollisionTotalCount(t *testing.T) {
+	// Get Service Context
+	ctx := TestServiceContext(ConfigProvider("test.yaml"))
+	count, err := ctx.Crypto.GetEncCollisionTotalCount()
+	assert.Nil(t, err)
+	assert.Equal(t, count, int64(200000))
 }

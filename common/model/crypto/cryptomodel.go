@@ -24,6 +24,7 @@ type (
 		CreateCollision(Crypto *Crypto) (bool, error)
 		CreateCryptoInBatches(Crypto []*Crypto) (rowsAffected int64, err error)
 		GetEncCollisionByEncData(encData string) (collisions *Crypto, err error)
+		GetEncCollisionTotalCount() (count int64, err error)
 	}
 
 	defaultCryptoModel struct {
@@ -163,6 +164,24 @@ func (m *defaultCryptoModel) GetEncCollisionByEncData(encData string) (collision
 		return nil, ErrNotFound
 	}
 	return collision, nil
+}
+
+/*
+	Func: GetEncCollisionByEncData
+	Params: encData string
+	Return: collision *Crypto, err error
+	Description: get collision by enc data
+*/
+func (m *defaultCryptoModel) GetEncCollisionTotalCount() (count int64, err error) {
+	dbTx := m.DB.Table(m.table).Count(&count)
+	if dbTx.Error != nil {
+		logx.Error("[crypto.GetEncCollisionByEncData] %s", dbTx.Error)
+		return -1, dbTx.Error
+	} else if dbTx.RowsAffected == 0 {
+		logx.Error("[crypto.GetEncCollisionByEncData] %s", ErrNotFound)
+		return -1, ErrNotFound
+	}
+	return count, nil
 }
 
 /*

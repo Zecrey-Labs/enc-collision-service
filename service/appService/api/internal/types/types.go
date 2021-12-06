@@ -15,3 +15,19 @@ type RespGetEncCollision struct {
 	Err    string                `json:"err"`
 	Result ResultGetEncCollision `json:"result"`
 }
+
+type ReqGetEncCollisionBatches struct {
+	EncDataBatches []string `form:"enc_data_batches"`
+}
+
+type ResultGetEncCollisionBatches struct {
+	EncData         string `json:"enc_data"`
+	CollisionResult int64  `json:"collision_result"`
+}
+
+type RespGetEncCollisionBatches struct {
+	Status int                             `json:"status"`
+	Msg    string                          `json:"msg"`
+	Err    string                          `json:"err"`
+	Result []*ResultGetEncCollisionBatches `json:"result"`
+}
