@@ -10,7 +10,7 @@ import (
 )
 
 const (
-	BASICCOUNT = 20
+	BASICCOUNT = 20000000
 )
 
 func InitCrypto(ctx *svc.ServiceContext) error {
