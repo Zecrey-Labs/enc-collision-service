@@ -51,5 +51,5 @@ service appService-api{
 	post /api/v1/crypto/getEncCollision (ReqGetEncCollision) returns (RespGetEncCollision)
 	
 	@handler GetEncCollisionBatches
-	post /api/v1/crypto/GetEncCollisionBatches (ReqGetEncCollisionBatches) returns (RespGetEncCollisionBatches)
+	post /api/v1/crypto/getEncCollisionBatches (ReqGetEncCollisionBatches) returns (RespGetEncCollisionBatches)
 }
