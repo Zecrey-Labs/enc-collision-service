@@ -1,6 +1,6 @@
 ### POST /api/v1/crypto/getEncCollision
 
-> 解密碰撞表，因为解密时间是线性的，如果数很大，需要的时间将非常长，通过后台设计碰撞表，将解密时间降低至常量级。
+> Decrypting the collision table, because the decryption time is linear, if the enc is large, the time will be very long. The collision table is designed in the background to reduce the decryption time to a constant level.
 
 #### Request Params
 
@@ -25,7 +25,7 @@
 
 ### POST /api/v1/crypto/getEncCollisionBatches
 
-> 解密碰撞表，由于有时候存在多个加密值，因此传入字符串数组，进行批量解密
+> Decrypt the collision table, because sometimes there are multiple encrypted values, so pass in a string array for batch decryption
 
 #### Request Params
 
