@@ -1,7 +1,4 @@
-# enc-collision-service开发入门
-Windows下开发环境使用`Goland + WSL2 + Docker`体验较好
-
-## Docker环境
+## Docker
 ```shell
 #1 install docker
 sudo apt-get -y install docker.io
@@ -14,13 +11,13 @@ echo $PAT | docker login ghcr.io --username ${username} --password-stdin
 docker pull ghcr.io/tt-loveslife/collisiondatabase:0.0.2
 
 #4 run postgres in docker
-docker run --name collision -p 5432:5432 -e POSTGRES_DB=crypto -e POSTGRES_USER=root -e POSTGRES_PASSWORD=123456  -d ghcr.io/tt-loveslife/collisiondatabase:0.0.2
+docker run --name collision -p 5432:5432 -e POSTGRES_DB=crypto -e POSTGRES_USER=<USER> -e POSTGRES_PASSWORD=<PASSWORD>  -d ghcr.io/tt-loveslife/collisiondatabase:0.0.2
 
 #5 pull redis image
 docker pull ghcr.io/tygavinzju/redis-sample:1.0.0
 
 #6 run redis in docker
-docker run -itd --name redis-test -p 6379:6379 ghcr.io/tygavinzju/redis-sample:1.0.0
+docker run -itd --name redis-test -p 6379:6379 ghcr.io/tygavinzju/redis-sample:1.0.0 --requirepass <PASS>
 ```
 
 ## Environmet
