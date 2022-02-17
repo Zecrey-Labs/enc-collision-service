@@ -2,7 +2,7 @@ package cryptohandler
 
 import (
 	"fmt"
-	curve "zecrey-crypto/ecc/ztwistededwards/tebn254"
+	curve "github.com/zecrey-labs/zecrey-crypto/ecc/ztwistededwards/tebn254"
 
 	"github.com/Zecrey-Labs/zecrey-collisions/common/model/crypto"
 	"github.com/Zecrey-Labs/zecrey-collisions/service/appService/api/internal/svc"
@@ -10,7 +10,7 @@ import (
 )
 
 const (
-	BASICCOUNT = 20000000
+	BASICCOUNT = 1000000
 )
 
 func InitCrypto(ctx *svc.ServiceContext) error {

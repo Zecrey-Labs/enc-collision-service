@@ -2,9 +2,9 @@ package test
 
 import (
 	"fmt"
+	curve "github.com/zecrey-labs/zecrey-crypto/ecc/ztwistededwards/tebn254"
 	"os"
 	"testing"
-	curve "zecrey-crypto/ecc/ztwistededwards/tebn254"
 
 	"github.com/Zecrey-Labs/zecrey-collisions/common/model/crypto"
 	"github.com/stretchr/testify/assert"

@@ -13,7 +13,7 @@ import (
 	"github.com/tal-tech/go-zero/rest"
 )
 
-var configFile = flag.String("f", "etc/appservice-api.yaml", "the config file")
+var configFile = flag.String("f", "/Users/gavin/Desktop/enc-collision-service/service/appService/api/etc/appservice-api.yaml", "the config file")
 
 func main() {
 	flag.Parse()
