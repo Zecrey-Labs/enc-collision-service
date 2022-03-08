@@ -2,6 +2,7 @@ package cryptohandler
 
 import (
 	"fmt"
+
 	curve "github.com/zecrey-labs/zecrey-crypto/ecc/ztwistededwards/tebn254"
 
 	"github.com/Zecrey-Labs/zecrey-collisions/common/model/crypto"
@@ -10,7 +11,7 @@ import (
 )
 
 const (
-	BASICCOUNT = 1000000
+	BASICCOUNT = 1000000 // total row count, value is between [-500000, 500000];
 )
 
 func InitCrypto(ctx *svc.ServiceContext) error {
@@ -29,9 +30,11 @@ func InitCrypto(ctx *svc.ServiceContext) error {
 	if count < BASICCOUNT {
 		current := curve.H
 		base := curve.H
+		// linear add to cur value;
 		for i := int64(1); i <= count/2; i++ {
 			current = curve.Add(current, base)
 		}
+		// add new records
 		for i := int64(count/2) + 1; i <= BASICCOUNT/2; i++ {
 			isSuccess, err := ctx.CryptoModel.CreateCollision(&crypto.Crypto{
 				EncData:      curve.ToString(current),
@@ -59,6 +62,7 @@ func InitCrypto(ctx *svc.ServiceContext) error {
 				logx.Error(errInfo)
 				return ErrInvalidCryptoInput
 			}
+			// print info when every 10000 records insert successfully
 			if i%10000 == 0 {
 				logx.Info("Insert 10000 records")
 			}
