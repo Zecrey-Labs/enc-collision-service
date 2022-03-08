@@ -22,10 +22,12 @@ func main() {
 	conf.MustLoad(*configFile, &c)
 
 	ctx := svc.NewServiceContext(c)
+	// init enc db
 	err := cryptohandler.InitCrypto(ctx)
 	if err != nil {
 		logx.Error("[main] %s", err.Error())
 	}
+
 	server := rest.MustNewServer(c.RestConf)
 	defer server.Stop()
 
