@@ -2,10 +2,6 @@
 * Service provide `getEncCollision` and `getEncCollisionBatches` api to decrypt the collision table
 * When service is running firstly, it will call `InitCrypto` func to check whether there  is enough data for decryption. The number of records is `1000000` default.
 
-
-
-
-
 ## Docker
 ```shell
 #1 install docker
